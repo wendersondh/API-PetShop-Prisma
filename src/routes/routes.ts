@@ -5,7 +5,7 @@ import * as petController from '../controllers/pet.controller'
 
 const router = Router();
 
-router.post('/petshops', async (req, res) => { await adicionarPetShop(req, res) });
+router.post('/petshops', adicionarPetShop);
 router.get('/pets', verificarContaExistente, petController.listarPets);
 router.post('/pets', verificarContaExistente, petController.adicionarPet);
 router.put('/pets/:id', verificarContaExistente, petController.atualizarPet);

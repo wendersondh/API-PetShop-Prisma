@@ -11,7 +11,7 @@ export async function adicionarPetShop (req: Request, res: Response) {
         // Validar se o CNPJ é válido
         const cnpjRegex = /^\d{2}\.\d{3}\.\d{3}\/0001-\d{2}$/;
         if(!cnpjRegex.test(cnpj)){
-            return res.status(400).json({error: 'CNPJ inválido'});
+             res.status(400).json({error: 'CNPJ inválido'});
         }
 
         // Verificar se o CNPJ já existe
@@ -21,7 +21,7 @@ export async function adicionarPetShop (req: Request, res: Response) {
             }
         });
         if(petShopExists){
-            return res.status(400).json({error: 'CNPJ já existe'});
+             res.status(400).json({error: 'CNPJ já existe'});
         }
 
         const petShop = await prisma.petShops.create({
@@ -31,8 +31,8 @@ export async function adicionarPetShop (req: Request, res: Response) {
                 cnpj
             }
         })
-        return res.status(201).json(petShop);
+         res.status(201).json(petShop);
     }catch(err){
-        return res.status(500).json({mensagem: 'Erro ao cadastrar petshop', error: err});
+         res.status(500).json({mensagem: 'Erro ao cadastrar petshop', error: err});
     }
 }
